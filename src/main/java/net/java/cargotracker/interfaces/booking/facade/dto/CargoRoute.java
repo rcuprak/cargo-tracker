@@ -1,8 +1,10 @@
 package net.java.cargotracker.interfaces.booking.facade.dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +18,7 @@ public class CargoRoute implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final SimpleDateFormat DATE_FORMAT
-            = new SimpleDateFormat("MM/dd/yyyy hh:mm a z");
+            = new SimpleDateFormat("yyyy-MM-dd");
 
     private final String trackingId;
     private final String origin;
@@ -30,12 +32,12 @@ public class CargoRoute implements Serializable {
     private String nextLocation;
 
     public CargoRoute(String trackingId, String origin, String finalDestination,
-            LocalDate arrivalDeadline, boolean misrouted, boolean claimed, 
-            String lastKnownLocation, String transportStatus) {
+                      LocalDate arrivalDeadline, boolean misrouted, boolean claimed,
+                      String lastKnownLocation, String transportStatus) {
         this.trackingId = trackingId;
         this.origin = origin;
         this.finalDestination = finalDestination;
-        this.arrivalDeadline = DATE_FORMAT.format(arrivalDeadline);
+        this.arrivalDeadline = DATE_FORMAT.format(Date.valueOf(arrivalDeadline));
         this.misrouted = misrouted;
         this.claimed = claimed;
         this.lastKnownLocation = lastKnownLocation;
@@ -99,11 +101,11 @@ public class CargoRoute implements Serializable {
     }
     
     public String getArrivalDeadlineDate() {
-        return DateUtil.getDateFromDateTime(arrivalDeadline); 
+        return arrivalDeadline;
     }
 
     public String getArrivalDeadlineTime() {
-        return DateUtil.getTimeFromDateTime(arrivalDeadline);
+        return arrivalDeadline; // TODO fix, should have the time.
     }
 
     public boolean isClaimed() {

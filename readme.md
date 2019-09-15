@@ -23,7 +23,7 @@ The simplest steps are the following (no IDE required):
 
 To set up in NetBeans, follow these steps:
 
-* Set up JDK 8+, NetBeans 8.2+ and Payara 5+.
+* Set up JDK 12, NetBeans 11.1 and Payara 5 (5.193 or newer).
 * Open the source code directory in NetBeans - it's just a Maven project, NetBeans will do the rest for you. As noted in the site instructions on NetBeans, you may get a few spurious errors due to reported NetBeans bugs. Just ignore them and proceed with clean/building the application.
 * After the project is built (which will take a while the very first time as Maven downloads dependencies), simply run it via Payara 5.
   

@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import net.java.cargotracker.domain.model.location.Location;
 import net.java.cargotracker.domain.shared.AbstractSpecification;
@@ -30,7 +28,7 @@ public class RouteSpecification extends AbstractSpecification<Itinerary>
     @ManyToOne
     @JoinColumn(name = "spec_destination_id")
     private Location destination;
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "spec_arrival_deadline")
     @NotNull
     private LocalDate arrivalDeadline;

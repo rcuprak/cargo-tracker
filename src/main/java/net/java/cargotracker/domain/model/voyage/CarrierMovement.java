@@ -1,7 +1,10 @@
 package net.java.cargotracker.domain.model.voyage;
 
-import java.io.Serializable;
-import java.util.Date;
+import net.java.cargotracker.domain.model.location.Location;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import net.java.cargotracker.domain.model.location.Location;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * A carrier movement is a vessel voyage from one location to another.
@@ -36,11 +35,11 @@ public class CarrierMovement implements Serializable {
     @JoinColumn(name = "arrival_location_id")
     @NotNull
     private Location arrivalLocation;
-    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name = "departure_time")
     @NotNull
     private Date departureTime;
-    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name = "arrival_time")
     @NotNull
     private Date arrivalTime;

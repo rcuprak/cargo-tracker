@@ -1,8 +1,7 @@
 package net.java.pathfinder.api;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+import net.java.pathfinder.internal.GraphDao;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -11,7 +10,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import net.java.pathfinder.internal.GraphDao;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 @Stateless
 @Path("/graph-traversal")

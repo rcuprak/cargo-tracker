@@ -1,7 +1,12 @@
 package net.java.cargotracker.domain.model.handling;
 
-import java.io.Serializable;
-import java.util.Date;
+import net.java.cargotracker.domain.model.cargo.Cargo;
+import net.java.cargotracker.domain.model.location.Location;
+import net.java.cargotracker.domain.model.voyage.Voyage;
+import net.java.cargotracker.domain.shared.DomainObjectUtils;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,19 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-
-import net.java.cargotracker.domain.model.cargo.Cargo;
-import net.java.cargotracker.domain.model.location.Location;
-import net.java.cargotracker.domain.model.voyage.Voyage;
-import net.java.cargotracker.domain.shared.DomainObjectUtils;
-
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * A HandlingEvent is used to register the event when, for instance, a cargo is
@@ -64,11 +60,9 @@ public class HandlingEvent implements Serializable {
     @JoinColumn(name = "location_id")
     @NotNull
     private Location location;
-    @Temporal(TemporalType.DATE)
     @NotNull
     @Column(name = "completionTime")
     private Date completionTime;
-    @Temporal(TemporalType.DATE)
     @NotNull
     @Column(name = "registration")
     private Date registrationTime;

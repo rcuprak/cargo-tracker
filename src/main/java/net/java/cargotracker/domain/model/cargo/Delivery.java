@@ -3,6 +3,8 @@ package net.java.cargotracker.domain.model.cargo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Iterator;
 import javax.persistence.Column;
@@ -60,7 +62,7 @@ public class Delivery implements Serializable {
     private RoutingStatus routingStatus;
     @Column(name = "calculated_at")
     @NotNull
-    private LocalDateTime calculatedAt;
+    private OffsetDateTime calculatedAt;
     @ManyToOne
     @JoinColumn(name = "last_event_id")
     private HandlingEvent lastEvent;
@@ -71,7 +73,7 @@ public class Delivery implements Serializable {
 
     public Delivery(HandlingEvent lastEvent, Itinerary itinerary,
             RouteSpecification routeSpecification) {
-        this.calculatedAt = LocalDateTime.now();
+        this.calculatedAt = OffsetDateTime.now();
         this.lastEvent = lastEvent;
 
         this.misdirected = calculateMisdirectionStatus(itinerary);
@@ -197,11 +199,11 @@ public class Delivery implements Serializable {
      * @return When this delivery was calculated.
      */
     public LocalDateTime getCalculatedAt() {
-        return calculatedAt;
+        return calculatedAt.toLocalDateTime();
     }
 
     public void setCalculatedAt(LocalDateTime calculatedAt) {
-        this.calculatedAt = calculatedAt;
+        this.calculatedAt = calculatedAt.atOffset(ZoneOffset.UTC);
     }
 
     private TransportStatus calculateTransportStatus() {

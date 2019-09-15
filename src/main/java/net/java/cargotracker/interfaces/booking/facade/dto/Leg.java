@@ -34,8 +34,8 @@ public class Leg implements Serializable {
         this.fromName = fromName;
         this.toUnLocode = toUnLocode;
         this.toName = toName;
-        this.loadTime = DATE_FORMAT.format(loadTime);
-        this.unloadTime = DATE_FORMAT.format(unloadTime);
+        this.loadTime = DATE_FORMAT.format(DateUtil.toDate(loadTime));
+        this.unloadTime = DATE_FORMAT.format(DateUtil.toDate(unloadTime));
     }
 
     public String getVoyageNumber() {
@@ -71,11 +71,11 @@ public class Leg implements Serializable {
     }
 
     public String getLoadTimeDate() {
-        return DateUtil.getDateFromDateTime(loadTime);
+        return loadTime;
     }
 
     public String getLoadTimeTime() {
-        return DateUtil.getTimeFromDateTime(loadTime);
+        return loadTime;
     }
 
     public String getUnloadTime() {
@@ -83,11 +83,11 @@ public class Leg implements Serializable {
     }
 
     public String getUnloadTimeTime() {
-        return DateUtil.getTimeFromDateTime(unloadTime);
+        return unloadTime;
     }
 
     public String getUnloadTimeDate() {
-        return DateUtil.getDateFromDateTime(unloadTime);
+        return unloadTime;
     }
 
     @Override

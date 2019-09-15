@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import static net.java.cargotracker.application.util.LocationUtil.getCoordinatesForLocation;
+
+import net.java.cargotracker.application.util.DateUtil;
 import net.java.cargotracker.domain.model.cargo.Cargo;
 import net.java.cargotracker.domain.model.cargo.Delivery;
 import net.java.cargotracker.domain.model.cargo.HandlingActivity;
@@ -90,7 +92,7 @@ public class CargoTrackingViewAdapter {
         if (eta == null) {
             return "?";
         } else {
-            return DATE_FORMAT.format(eta);
+            return DATE_FORMAT.format(DateUtil.toDate(eta));
         }
     }
 
